@@ -23,8 +23,8 @@ import org.slf4j.LoggerFactory;
  * Logger name is extracted from XSL location (systemId), and trimed to eliminates
  * everything that's before rootPackage.
  * 
- * If a <tt></tt> file exists at classpath root,
- * and if if contains a property named <tt>root.package</tt>, its value is used as rootPackage.<br/>
+ * If a <tt>{@link #PROPERTY_FILE_NAME}</tt> file exists at classpath root,
+ * and if if contains a property named <tt>{@link #PROPERTY_ENTRY}</tt>, its value is used as rootPackage.<br>
  * rootPackage is overriden via system property {@link #ROOT_PACKAGE_SYSTEM_PROPERTY}, if defined.
  * @author cmarchand
  */
@@ -73,6 +73,12 @@ public class MessageListener implements net.sf.saxon.s9api.MessageListener {
         } else {
             String level = xdmMessage.getAttributeValue(new QName("level"));
             switch (level) {
+                case "trace":
+                    logger.trace((terminate?"[TERMINATE] ":"")+textMessage);
+                    break;
+                case "debug":
+                    logger.debug((terminate?"[TERMINATE] ":"")+textMessage);
+                    break;
                 case "info":
                     logger.info((terminate?"[TERMINATE] ":"")+textMessage);
                     break;

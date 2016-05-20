@@ -1,0 +1,41 @@
+      ---
+    Saxon-MessageListener-SLF
+      ---
+    Christophe Marchand \<christophe@marchand.top\>
+      ---
+    2016-05-20
+      ---
+
+Saxon MessageListener for SLF4J
+
+  Saxon MessageListsner for SLF4J is a listener used to intercept <<<\<xsl:message\>>>> messages.
+  The logger is defined from XSL base-uri(), and if a root package is defined, the beginning part
+  of the URI is trimed, before the root package start.
+
+  Root package can be defined :
+
+  * if a file named <<<top.marchand.xml.sxmsgslf.message-listener.properties>>> is available at classpath root,
+    if a property named <<<root.package>>> is defined in, its value is used as root package.
+
+  * if a System Property called <<<top.marchand.xml.sxmsgslf.RootPackage>>> is defined, its value is used as root package.
+    The System property always override the property file definition
+
+  []
+
+  You can set the listener like this :
+
++------------------------------------------------------------------------------------
+XsltTransformer.setMessageListener(new top.marchand.xml.sxmsgslf.MessageListener());
++------------------------------------------------------------------------------------
+
+  You can give an XML part to xsl:message :
+
++------------------------------------------------------------------------------------
+<log level="warn">Your message</log>
++------------------------------------------------------------------------------------
+
+  Valid values for <<<@level>>> are <<<error | warn | info | debug | trace>>>
+
+  Enjoy !
+
+
